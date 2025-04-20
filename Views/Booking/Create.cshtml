@@ -1,0 +1,51 @@
+﻿@model EnhancedHallBooking.Models.ViewModels.BookingViewModel
+
+<section class="py-4">
+    <h2 class="text-center">Book a Facility</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form asp-action="Create" method="post" id="bookingForm" class="p-4 bg-light rounded shadow-sm">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Facility" class="form-label"></label>
+                    <select asp-for="Facility" class="form-control">
+                        <option value="">Select a facility</option>
+                        <option value="Main Hall">Main Hall</option>
+                        <option value="Meeting Room">Meeting Room</option>
+                    </select>
+                    <span asp-validation-for="Facility" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="BookingDate" class="form-label"></label>
+                    <input asp-for="BookingDate" class="form-control" type="date" />
+                    <span asp-validation-for="BookingDate" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="StartTime" class="form-label"></label>
+                    <input asp-for="StartTime" class="form-control" type="time" />
+                    <span asp-validation-for="StartTime" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="EndTime" class="form-label"></label>
+                    <input asp-for="EndTime" class="form-control" type="time" />
+                    <span asp-validation-for="EndTime" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Submit Booking</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

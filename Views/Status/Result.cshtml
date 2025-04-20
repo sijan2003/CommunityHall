@@ -1,0 +1,46 @@
+﻿@model IEnumerable<EnhancedHallBooking.Models.Booking>
+
+<section class="py-4">
+    <h2 class="text-center">Your Bookings</h2>
+    @if (!Model.Any())
+    {
+        <p class="text-center text-muted">No bookings found for this email.</p>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Facility</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var booking in Model)
+                    {
+                        <tr>
+                            <td>@booking.Id</td>
+                            <td>@booking.Facility</td>
+                            <td>@booking.BookingDate.ToString("yyyy-MM-dd")</td>
+                            <td>
+                                @booking.StartTime.ToString(@"hh\:mm") - @booking.EndTime.ToString(@"hh\:mm")
+                            </td>
+                            <td>
+                                <span class="badge @(booking.Status == "Approved" ? "bg-success" : booking.Status == "Pending" ? "bg-warning" : "bg-danger")">
+                                    @booking.Status
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    <div class="text-center">
+        <a asp-action="Check" class="btn btn-outline-primary">Check Another</a>
+    </div>
+</section>
